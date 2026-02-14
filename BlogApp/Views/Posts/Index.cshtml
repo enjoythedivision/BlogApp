@@ -1,0 +1,28 @@
+﻿@model IEnumerable<BlogApp.Models.Post>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4 text-center">Blog Posts</h1>
+    <a class="btn btn-primary mb-3" asp-action="Create">Create New Post</a>
+
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        @foreach (var post in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@post.Title</h5>
+                        <p class="card-text text-truncate">@post.Content</p>
+                        <p class="text-muted small">Created: @post.CreatedAt.ToString("dd MMM yyyy, HH:mm")</p>
+                        <a class="btn btn-sm btn-outline-primary" asp-action="Details" asp-route-id="@post.Id">View</a>
+                        <a class="btn btn-sm btn-outline-secondary" asp-action="Edit" asp-route-id="@post.Id">Edit</a>
+                        <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@post.Id">Delete</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
